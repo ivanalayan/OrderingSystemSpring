@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ordering.models.Customer" table="Customer"
+		catalog="OrderingSystem">
+		<id name="customerId" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="firstName" type="string">
+			<column name="firstname" />
+		</property>
+		<property name="lastName" type="string">
+			<column name="lastname" />
+		</property>
+		<property name="username" type="string">
+			<column name="username" />
+		</property>
+		<property name="password" type="string">
+			<column name="password" />
+		</property>
+		<property name="address" type="string">
+			<column name="address" />
+		</property>
+		<property name="birthday" type="java.util.Date">
+			<column name="birthday" />
+		</property>
+		<property name="dateRegistered" type="java.util.Date">
+			<column name="registered_date" />
+		</property>
+		<property name="lastOrderDate" type="java.util.Date">
+			<column name="last_ordered_date" />
+		</property>
+		
+		<set name="cartItems" table="cart" 
+				inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="customer_id" not-null="true" />
+            </key>
+            <one-to-many class="com.ordering.models.Cart" />
+        </set>
+        
+	</class>
+</hibernate-mapping>

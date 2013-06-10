@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.ordering.models.Cart" table="cart" catalog="OrderingSystem">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<many-to-one name="customer" class="com.ordering.models.Customer"
+			fetch="select">
+			<column name="customer_id" not-null="true" />
+		</many-to-one>
+
+		<many-to-one name="product" class="com.ordering.models.Product"
+			fetch="select">
+			<column name="product_id" not-null="true" />
+		</many-to-one>
+
+		<property name="qty" type="java.lang.Integer">
+			<column name="qty" />
+		</property>
+
+	</class>
+</hibernate-mapping>
